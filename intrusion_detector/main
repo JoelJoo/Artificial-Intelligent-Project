@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import cv2 as cv
+import numpy as np
+import pyttsx3
+import time
+from cvzone.FaceDetectionModule import FaceDetector
+import cvzone
+from cvzone.PoseModule import PoseDetector
+import math
+
+capture = cv.VideoCapture(0)
+detector = FaceDetector(minDetectionCon=0.5)
+
+engine = pyttsx3.init()
+
+while True:
+    success, img = capture.read()
+    img, face = detector.findFaces(img)
+
+    if face:
+        print("Intrusion")
+        engine.say("Detected Intrusion")
+        engine.runAndWait()
+    
+    cv.imshow("Video actual", img)
+    key = cv.waitKey(1)
+    if key == ord('q'):
+        break
+
+capture.release()
+cv.destroyAllWindows()
