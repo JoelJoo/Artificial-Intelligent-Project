@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+import cvzone
+import cv2
+from cvzone.FPS import FPS
+#import mediapipe as mp
+from cvzone.SelfiSegmentationModule import SelfiSegmentation
+import os
+
+cap = cv2.VideoCapture(0)
+cap.set(3, 640)
+cap.set(4, 480)
+cap.set(cv2.CAP_PROP_FPS, 60)
+segmenter = SelfiSegmentation(1)
+
+fpsReader = FPS(30)
+
+#imgBg = cv2.imread("Background_images/1.jpg")
+
+listImg = os.listdir("Background_images")
+print(listImg)
+
+
+imgList = []
+
+for imgPath in listImg:
+    img = cv2.imread(f'Background_images/{imgPath}')
+    imgList.append(img)
+
+indexImg = 0
+print(len(imgList))
+while True:
+
+    success, img = cap.read()
+    imgOut = segmenter.removeBG(img, imgList[indexImg], cutThreshold=0.2)
+
+    imgStacked = cvzone.stackImages([img, imgOut], 2, 1)
+    _, imgStacked = fpsReader.update(imgStacked)
+    #cv2.imshow("Image", img)
+    #cv2.imshow("Image Out", imgOut)
+    print(indexImg)
+    cv2.imshow("Images", imgStacked)
+    key = cv2.waitKey(1)
+
+    if key == ord('+'):
+        if indexImg < len(imgList) - 1:
+            indexImg += 1
+
+    elif key == ord('-') and indexImg != 0:
+        indexImg -= 1
+
+    elif key == ord('q'):
+        break
+    """if key == ord('+') and indexImg == 5:
+    indexImg += 2"""
+    
