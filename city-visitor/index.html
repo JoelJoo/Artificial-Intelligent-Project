@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--projecttitle--><title>city-visitor</title><!--projecttitle-end-->
+		<!--projectdescription--><meta name="description" content="Baruuuuurururuurru"><!--projectdescription-end-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+		
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		
+		<script src="imagedata.js"></script>
+		<script src="jquery.js"></script>
+		<script src="three.min.js"></script>
+		<script src="panolens.min.js"></script>
+		
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
+		<style>
+		
+			
+						
+			/* SCROLLBAR STYLING */
+			/* width */
+			::-webkit-scrollbar {
+				width: 0.25em;
+				height: 0.25em;
+			}
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: #2c3643; 
+			}
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: #0d9e59; 
+				transition: background .5s;
+			}
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: #00e075; 
+			}
+
+
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #000;
+				color; black;
+			}
+
+			a:link, a:visited{
+				color: #bdc3c7;	
+			}
+
+			.fullwrapper{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+			}
+			
+			#container {
+                width: 100%;
+                height: 100%;
+            }
+			
+			#tmp{
+				position: fixed;
+				top: 0;
+				left: 0; 
+				right: 0;
+				bottom: 0;
+				padding: 3em;
+				background-color: rgba(0,0,0,.5);
+				backdrop-filter: blur(5px);
+				display: none;
+			}
+		</style>
+	</head>
+	<body id="body">
+	    <div id="container" style="color: black;"></div>
+    	
+		
+		
+		<!--customhtml--><div class='customhotspot' id='testpanorama'></div><div class='customhotspot' id='pexelspixabay164338'></div><div class='customhotspot' id='pexelsnextvoyage457937'></div><div class='customhotspot' id='pexelsheyho6580215'></div><div class='customhotspot' id='shotpanoramiccompositionbedroom'></div><div class='customhotspot' id='photorealisticviewcowsgrazingnatureoutdoors'></div><!--customhtml-end-->
+		
+		<div id="tmp">
+			<div style="width: 100%; height: 100%; overflow: hidden; overflow-y: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
+			<div class="mediaclosebutton" onclick="hideTemp()"><i class="fa fa-times-circle"></i></div>
+		</div>
+
+		<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
+    		<div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
+    			<!--loadingtext-->Loading...<!--loadingtext-end-->
+				<div id="loadingperc" style="font-size:12px;"></div>
+    		</div>
+    	</div>
+		
+    	<script>
+			
+            var container = document.querySelector( '#container' );
+			/*panolens*/
+var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
+/*panolens-end*/
+			
+			viewer.addUpdateCallback(function(){});
+			
+			/*panoramas*/
+var testpanorama = new PANOLENS.ImagePanorama( "panoramas/testpanorama.jpg" );
+			testpanorama.addEventListener('progress', onProgress);
+			testpanorama.addEventListener('load', function(e){
+				endLoading();
+			});
+			testpanorama.addEventListener('enter', function(e){
+				endLoading();
+			});
+			testpanorama.addEventListener('click', function(e){
+			});
+
+var infospottestpanorama0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospottestpanorama0.position.set( -4732.37, 177.38, 1585.34 );
+					testpanorama.add(infospottestpanorama0);
+infospottestpanorama0.addEventListener('click', function(){
+ChangePanorama('pexelsnextvoyage457937');
+});
+viewer.add( testpanorama );
+var pexelspixabay164338 = new PANOLENS.ImagePanorama( "panoramas/pexelspixabay164338.jpg" );
+			pexelspixabay164338.addEventListener('progress', onProgress);
+			pexelspixabay164338.addEventListener('load', function(e){
+				endLoading();
+			});
+			pexelspixabay164338.addEventListener('enter', function(e){
+				endLoading();
+			});
+			pexelspixabay164338.addEventListener('click', function(e){
+			});
+
+var infospotpexelspixabay1643380 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotpexelspixabay1643380.position.set( 3023.87, -1312.74, 3746.04 );
+					pexelspixabay164338.add(infospotpexelspixabay1643380);
+infospotpexelspixabay1643380.addEventListener('click', function(){
+ChangePanorama('shotpanoramiccompositionbedroom');
+});
+viewer.add( pexelspixabay164338 );
+var pexelsnextvoyage457937 = new PANOLENS.ImagePanorama( "panoramas/pexelsnextvoyage457937.jpg" );
+			pexelsnextvoyage457937.addEventListener('progress', onProgress);
+			pexelsnextvoyage457937.addEventListener('load', function(e){
+				endLoading();
+			});
+			pexelsnextvoyage457937.addEventListener('enter', function(e){
+				endLoading();
+			});
+			pexelsnextvoyage457937.addEventListener('click', function(e){
+			});
+
+var infospotpexelsnextvoyage4579370 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotpexelsnextvoyage4579370.position.set( 4448.18, -502.64, 2205.67 );
+					pexelsnextvoyage457937.add(infospotpexelsnextvoyage4579370);
+infospotpexelsnextvoyage4579370.addEventListener('click', function(){
+ChangePanorama('pexelspixabay164338');
+});
+viewer.add( pexelsnextvoyage457937 );
+var pexelsheyho6580215 = new PANOLENS.ImagePanorama( "panoramas/pexelsheyho6580215.jpg" );
+			pexelsheyho6580215.addEventListener('progress', onProgress);
+			pexelsheyho6580215.addEventListener('load', function(e){
+				endLoading();
+			});
+			pexelsheyho6580215.addEventListener('enter', function(e){
+				endLoading();
+			});
+			pexelsheyho6580215.addEventListener('click', function(e){
+			});
+
+viewer.add( pexelsheyho6580215 );
+var shotpanoramiccompositionbedroom = new PANOLENS.ImagePanorama( "panoramas/shotpanoramiccompositionbedroom.jpg" );
+			shotpanoramiccompositionbedroom.addEventListener('progress', onProgress);
+			shotpanoramiccompositionbedroom.addEventListener('load', function(e){
+				endLoading();
+			});
+			shotpanoramiccompositionbedroom.addEventListener('enter', function(e){
+				endLoading();
+			});
+			shotpanoramiccompositionbedroom.addEventListener('click', function(e){
+			});
+
+var infospotshotpanoramiccompositionbedroom0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotshotpanoramiccompositionbedroom0.position.set( 2253.77, -573.16, -4414.32 );
+					shotpanoramiccompositionbedroom.add(infospotshotpanoramiccompositionbedroom0);
+infospotshotpanoramiccompositionbedroom0.addEventListener('click', function(){
+ChangePanorama('photorealisticviewcowsgrazingnatureoutdoors');
+});
+viewer.add( shotpanoramiccompositionbedroom );
+var photorealisticviewcowsgrazingnatureoutdoors = new PANOLENS.ImagePanorama( "panoramas/photorealisticviewcowsgrazingnatureoutdoors.jpg" );
+			photorealisticviewcowsgrazingnatureoutdoors.addEventListener('progress', onProgress);
+			photorealisticviewcowsgrazingnatureoutdoors.addEventListener('load', function(e){
+				endLoading();
+			});
+			photorealisticviewcowsgrazingnatureoutdoors.addEventListener('enter', function(e){
+				endLoading();
+			});
+			photorealisticviewcowsgrazingnatureoutdoors.addEventListener('click', function(e){
+			});
+
+viewer.add( photorealisticviewcowsgrazingnatureoutdoors );
+$(document).ready(function(){ ChangePanorama('testpanorama'); });
+
+/*panoramas-end*/
+            
+			var stilloading = true;
+			function onProgress ( event ) {
+				
+				progress = event.progress.loaded / event.progress.total * 100;
+				console.log("Loading panorama: " + progress + " ... ");
+				$("#loadingperc").html(Math.ceil(progress) + "%");
+				if(Math.ceil(progress) >= 100){
+					endLoading();
+					stilloading = false;
+
+				}else{
+				    clearTimeout(elTimer);
+					stilloading = true;
+					$("#loading").show();
+				}
+			}
+			
+			var elTimer;
+			function endLoading(){
+			    clearTimeout(elTimer);
+				if(stilloading == false){
+					elTimer = setTimeout(function(){
+						$("#loading").fadeOut();
+					}, 750);
+					
+				}
+			}
+			
+			function hideTemp(){
+				$("#tmp").fadeOut();
+				setTimeout(function(){
+					$("#tmpcontent").html("");
+				},1000);
+			}
+			
+			function showMedia(type, content){
+				switch(type){
+					case 1 :
+						//Image
+						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
+						$("#tmp").fadeIn();
+						break;
+					case 2 :
+						//Video
+						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
+						$("#tmp").fadeIn();
+						break;
+					case 3 :
+						//Audio
+						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+						$("#tmp").fadeIn();
+						break;
+					case 4 :
+						//PDF
+						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 99%;'></iframe>");
+						$("#tmp").fadeIn();
+						break;
+				}
+			}
+			
+			
+			
+			//Update Callback
+			viewer.addUpdateCallback(function(){
+				
+				/*viewerupdatecallback*/
+if(viewer.panorama == testpanorama){
+}
+
+if(viewer.panorama == pexelspixabay164338){
+}
+
+if(viewer.panorama == pexelsnextvoyage457937){
+}
+
+if(viewer.panorama == pexelsheyho6580215){
+}
+
+if(viewer.panorama == shotpanoramiccompositionbedroom){
+}
+
+if(viewer.panorama == photorealisticviewcowsgrazingnatureoutdoors){
+}
+/*viewerupdatecallback-end*/
+				
+				
+			});
+			
+			
+			
+			var hotspotsvisible = true;
+			function ShowMyInfospot(hs, elid){
+				var thehs = toScreenPosition(hs);
+				if(thehs.z < 1){
+					$("#" + elid).css({
+						"top" : (thehs.y - ($("#" + elid).height()/2)) + "px",
+						"left" : (thehs.x - ($("#" + elid).width()/2)) + "px",
+					});
+					if(hotspotsvisible)
+						$("#" + elid).show();
+				}else{
+					$("#" + elid).hide();
+				}
+				
+			}
+			
+			function toScreenPosition(obj)
+			{
+				var vector = new THREE.Vector3();
+				var widthHalf = 0.5 * innerWidth;
+				var heightHalf = 0.5 * innerHeight;
+				
+				//obj.updateMatrixWorld();				
+				vector.setFromMatrixPosition(obj.matrixWorld);
+				
+				
+				vector.project(viewer.camera);
+
+				vector.x = ( vector.x * widthHalf ) + widthHalf;
+				vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+				
+				return { 
+					x: vector.x,
+					y: vector.y,
+					z: vector.z,
+				};
+
+			};
+			
+			var currentPanorama;
+			function ChangePanorama(panorama){
+				currentPanorama = panorama;
+				HideInfospots(); 
+				$("#loading").fadeIn();
+				//$(".customhotspot").fadeOut();
+				setTimeout(function(){
+					viewer.setPanorama(window[panorama]);
+				}, 100);
+				setTimeout(function(){
+					$("#" + panorama).fadeIn();
+				}, 1000);
+				
+			}
+			
+			
+			
+			
+			
+			function HideInfospots(){
+				$(".customhotspot").fadeOut();
+			}
+
+			/*customjs*//*customjs-end*/
+        </script>
+	</body>
+</html>
